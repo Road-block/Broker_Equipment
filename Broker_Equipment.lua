@@ -11,7 +11,7 @@ local LDB = LibStub('LibDataBroker-1.1'):NewDataObject('Broker_Equipment', {
 	type = 'data source',
 })
 
-local Broker_Equipment = CreateFrame('Frame', addonName, UIParent)
+local Broker_Equipment = CreateFrame('Frame', addonName, UIParent, BackdropTemplateMixin and "BackdropTemplate" or nil)
 Broker_Equipment:RegisterEvent('PLAYER_LOGIN')
 Broker_Equipment:SetScript('OnEvent', function(self, event, ...) self[event](self, ...) end)
 Broker_Equipment:Hide()
@@ -88,7 +88,8 @@ function LDB:OnClick(button)
 			CharacterFrame_Expand()
 		end
 
-		if(not _G[PAPERDOLL_SIDEBARS[3].frame]:IsShown()) then
+		local equipSetTabFrame = GetPaperDollSideBarFrame(3)
+		if(not equipSetTabFrame:IsShown()) then
 			PaperDollFrame_SetSidebar(nil, 3)
 		end
 	end
@@ -136,7 +137,7 @@ local function OnItemLeave(self)
 end
 
 function Broker_Equipment:CreateItem(index)
-	local Item = CreateFrame('Button', nil, self)
+	local Item = CreateFrame('Button', nil, self, BackdropTemplateMixin and "BackdropTemplate" or nil)
 	Item:SetPoint('TOPLEFT', 11, -((index - 1) * 18) - UIDROPDOWNMENU_BORDER_HEIGHT)
 	Item:SetHighlightTexture([[Interface\QuestFrame\UI-QuestTitleHighlight]])
 	Item:GetHighlightTexture():SetBlendMode('ADD')
@@ -144,7 +145,7 @@ function Broker_Equipment:CreateItem(index)
 	Item:SetScript('OnEnter', OnItemEnter)
 	Item:SetScript('OnLeave', OnItemLeave)
 
-	local Button = CreateFrame('CheckButton', nil, Item)
+	local Button = CreateFrame('CheckButton', nil, Item, BackdropTemplateMixin and "BackdropTemplate" or nil)
 	Button:SetPoint('LEFT')
 	Button:SetSize(16, 16)
 	Button:SetNormalTexture([[Interface\Common\UI-DropDownRadioChecks]])
