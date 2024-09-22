@@ -1,6 +1,6 @@
-## Interface: 40400
+## Interface: 40401
 ## Author: p3lim, road-block (cata classic)
-## Version: 40400.1
+## Version: 40401.1
 ## Title: Broker Equipment
 ## Notes: LDB Equipment Manager plug-in
 ## SavedVariables: Broker_EquipmentDB

@@ -93,4 +93,9 @@ Panel:SetScript('OnShow', function(self)
 	self:SetScript('OnShow', nil)
 end)
 
-InterfaceOptions_AddCategory(Panel)
+if _G.InterfaceOptions_AddCategory then
+	InterfaceOptions_AddCategory(Panel)
+elseif Settings and Settings.RegisterCanvasLayoutCategory then
+  local cat = Settings.RegisterCanvasLayoutCategory(Panel,addonName)
+  Settings.RegisterAddOnCategory(cat)
+end
