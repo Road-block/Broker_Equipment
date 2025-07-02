@@ -85,7 +85,11 @@ function LDB:OnClick(button)
 
 		if(not CharacterFrame.Expanded) then
 			SetCVar('characterFrameCollapsed', '0')
-			CharacterFrame_Expand()
+			if CharacterFrame_Expand then
+				CharacterFrame_Expand()
+			elseif CharacterFrame and CharacterFrame.Expand then
+				CharacterFrame:Expand()
+			end
 		end
 
 		local equipSetTabFrame = GetPaperDollSideBarFrame(3)
